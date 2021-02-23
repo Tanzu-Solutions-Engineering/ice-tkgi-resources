@@ -2,6 +2,8 @@ apiVersion: training.eduk8s.io/v1alpha1
 kind: TrainingPortal
 metadata:
   name: ice-tkgi-resources
+  annotations:
+    kapp.k14s.io/update-strategy: always-replace
 spec:
   portal:
     registration:

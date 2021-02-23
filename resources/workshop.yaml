@@ -1,6 +1,8 @@
 apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop
 metadata:
+  annotations:
+    kapp.k14s.io/update-strategy: always-replace
   name: ice-tkgi-resources
 spec:
   title: TKGI Resources
@@ -12,6 +14,21 @@ spec:
   content:
     #image: quay.io/eduk8s/lab-markdown-sample:master
     files: github.com/Tanzu-Solutions-Engineering/ice-tkgi-resources
+  environment:
+    objects:
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        name: workshop-cluster-dev
+      rules:
+      - apiGroups:
+        - pksapi.io
+        resources:
+        - clusterlogsinks
+        verbs:
+        - get
+        - list
+        - watch    
   session:
     namespaces:
       budget: small
@@ -23,3 +40,44 @@ spec:
         enabled: true
       editor:
         enabled: true
+    objects:
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: workshop-dev
+      rules:
+      - apiGroups:
+        - pksapi.io
+        resources:
+        - logsinks
+        verbs:
+        - create
+        - patch
+        - delete
+        - get
+        - list
+        - watch
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: workshop-dev-binding
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: workshop-dev
+      subjects:
+      - kind: ServiceAccount
+        namespace: $(workshop_namespace)
+        name: $(service_account)
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRoleBinding
+      metadata:
+        name: workshop-dev-cluster-$(session_namespace)
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: workshop-cluster-dev
+      subjects:
+      - kind: ServiceAccount
+        namespace: $(workshop_namespace)
+        name: $(service_account)
