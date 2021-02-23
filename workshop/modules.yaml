@@ -3,10 +3,12 @@ modules:
         name: Workshop Overview
         exit_sign: Using Workshop
     using-workshop:
-        name: Using Workshop
+        name: Using The Workshop
         exit_sign: Start Workshop
-    exercises/01-sample-content:
-        name: Sample Content
+    exercises/01-observability:
+        name: Observability
+    exercises/02-logging:
+        name: Logging
     workshop-summary:
         name: Workshop Summary
         exit_sign: Finish Workshop

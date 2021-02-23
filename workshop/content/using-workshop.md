@@ -1,6 +1,6 @@
-When you log-in to the workshop portal, you will get access to a Kubernetes namespace in a TKGI cluster.
+When you log-in to the workshop portal, you will be allocated a dedicated  Kubernetes namespace in a TKGI cluster.
 
-You can perform any Kubernetes operation in this namespace.
+You can perform Kubernetes operations in this namespace.
 
  For example:
 

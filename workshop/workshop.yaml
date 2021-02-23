@@ -4,5 +4,6 @@ modules:
     activate:
     - workshop-overview
     - using-workshop
-    - exercises/01-sample-content
+    - exercises/01-observability
+    - exercises/02-logging
     - workshop-summary
