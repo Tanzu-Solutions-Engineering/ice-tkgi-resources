@@ -44,17 +44,21 @@ The following information will be required:
 ### Individual K8s Namespaces within a Cluster
 
 Create a yaml file `sink.yaml` with the following contents:
+
 ```yaml
-apiVersion: apps.pivotal.io/v1beta1
-kind: Sink
+apiVersion: pksapi.io/v1beta1
+kind: LogSink
 metadata:
-  name: papertrail-sink
-  namespace: kube-system
+  name: sink-papertrail
+  namespace: spring-petclinic
 spec:
-  type: syslog
-  host: logs3.papertrailapp.com
-  port: 39458
-  enable_tls: true
+  type: http
+  output_properties:
+    Host: logsx.papertrailapp.com
+    #Format: json
+    Port: 4423
+    tls: on
+    tls.verify: off
 ```
 
 where `name` is the name of your Sink resource, `host` is the syslog host, `port` is the syslog port and `enable_tls` enables TLS communication.
@@ -79,6 +83,20 @@ spec:
    host: logs3.papertrailapp.com
    port: 39458
    enable_tls: true
+```
+```yaml
+apiVersion: pksapi.io/v1beta1
+kind: ClusterLogSink
+metadata:
+  name: cluster-sink-papertrail
+spec:
+  type: http
+  output_properties:
+    Host: logsx.papertrailapp.com
+    #Format: json
+    Port: 4423
+    tls: on
+    tls.verify: off
 ```
 
 where `name` is the name of your ClusterSink, `host` is the syslog host, `port` is the syslog port and `enable_tls` enables TLS communication.
@@ -124,7 +142,6 @@ Navigate to the top level. `Review Pending Changes` and then `Apply Changes`.
 Navigate to your Syslog dashboard and look for relevant logs in your Syslog dashboard.
 
 ### Useful Links
- - [Observability](https://www.oreilly.com/library/view/distributed-systems-observability/9781492033431/ch04.html)
  - [12 factor apps](https://12factor.net/)
  - [Sink Architecture](https://docs.pivotal.io/tkgi/1-10/sink-architecture.html)
  - [Creating Sinks](https://docs.pivotal.io/tkgi/1-10/create-sinks.html)
