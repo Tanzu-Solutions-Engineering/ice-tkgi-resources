@@ -74,17 +74,6 @@ Navigate to your Syslog dashboard and look for relevant logs in your Syslog dash
 Create a yaml file `clustersink.yaml` with the following contents:
 
 ```yaml
-apiVersion: apps.pivotal.io/v1beta1
-kind: ClusterSink
-metadata:
-   name: papertrail-clustersink
-spec:
-   type: syslog
-   host: logs3.papertrailapp.com
-   port: 39458
-   enable_tls: true
-```
-```yaml
 apiVersion: pksapi.io/v1beta1
 kind: ClusterLogSink
 metadata:

@@ -7,6 +7,7 @@ modules:
         exit_sign: Start Workshop
     exercises/01-observability:
         name: Observability
+        exit_sign: Logging
     exercises/02-logging:
         name: Logging
     workshop-summary:
