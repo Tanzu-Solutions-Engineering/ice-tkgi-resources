@@ -124,7 +124,7 @@ Navigate to the top level. `Review Pending Changes` and then `Apply Changes`.
 Navigate to your Syslog dashboard and look for relevant logs in your Syslog dashboard.
 
 ### Useful Links
+ - [Observability](https://www.oreilly.com/library/view/distributed-systems-observability/9781492033431/ch04.html)
  - [12 factor apps](https://12factor.net/)
  - [Sink Architecture](https://docs.pivotal.io/tkgi/1-10/sink-architecture.html)
  - [Creating Sinks](https://docs.pivotal.io/tkgi/1-10/create-sinks.html)
-
