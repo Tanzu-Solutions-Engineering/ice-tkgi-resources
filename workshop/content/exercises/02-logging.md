@@ -1,12 +1,12 @@
-# PKS Logging with Syslog
+# TKGI Logging with Syslog
 
 ## Table of Contents
 - [Application Logging 12 factor Approach](#application-logging-12-factor-approach)
 - [Routing Application Logs](#log-routing-with-fluent-bit)
-- [PKS Logging](#pks-logging)
+- [TKGI Logging](#tkgi-logging)
     - [Individual K8s namespaces within a cluster](#individual-k8s-namespaces-within-a-cluster)
     - [Individual K8s Clusters](#individual-k8s-clusters)
-    - [PKS Control Plane](#pks-control-plane)
+    - [TKGI Control Plane](#tkgi-control-plane)
     - [BOSH Director and its Components](#bosh-director-and-its-components)
     - [Useful Links](#useful-links)
 
@@ -37,7 +37,7 @@ TKGI logging can be enabled and configured at 4 different levels:
 
 1. Individual K8s namespaces within a cluster
 2. Individual K8s clusters
-3. PKS Control plane
+3. TKGI Control plane
 4. BOSH Director and its components
 
 For this lab, we will use the [Papertrail](https://papertrailapp.com) syslog application. Users can bring their own logging systems that follow the syslog protocol.
@@ -47,7 +47,7 @@ The following information will be required:
 * Syslog endpoint - `logsx.papertrailapp.com` for this lab
 * Syslog port - `4423` for this lab
 * TLS enabled/disabled - `Enabled` for this lab.
-* `Enable Log Sink Resources` should be enabled on the PKS tile.
+* `Enable Log Sink Resources` should be enabled on the TKGI tile.
 
 #### Application Logging
 
@@ -121,15 +121,15 @@ Navigate to your Syslog dashboard and look for relevant logs in your Syslog dash
 
 #### Platform Logging
 
-##### PKS Control Plane
+##### TKGI Control Plane
 
-To enable logging of the PKS control plane, within the OpsMan UI, navigate to the PKS tile -> `Settings` -> `Logging`.
+To enable logging of the TKGI control plane, within the OpsMan UI, navigate to the TKGI tile -> `Settings` -> `Host Monitoring`.
 
 The following information needs to be entered:
 
-- `Enable Syslog for PKS?` - `Yes`
-- `Address` -`logs3.papertrailapp.com`
-- `Port` - `39458`
+- `Enable Syslog for TKGI?` - `Yes`
+- `Address` -`logsx.papertrailapp.com`
+- `Port` - `3948`
 - `Transport Protocol` - `TCP`
 - `Enable TLS` - Checked if the logging app allows TLS.
 - `Save` the changes
