@@ -11,5 +11,5 @@ spec:
   workshops:
   - name: ice-tkgi-resources
     capacity: 5 
-    expires: 60m
+    expires: 150m
     orphaned: 5m

@@ -1,7 +1,7 @@
 # PKS Logging with Syslog
 
 ## Table of Contents
-- [Application Logging Recommended Approach](#application-logging-12-factor-approach)
+- [Application Logging 12 factor Approach](#application-logging-12-factor-approach)
 - [Routing Application Logs](#log-routing-with-fluent-bit)
 - [PKS Logging](#pks-logging)
     - [Individual K8s namespaces within a cluster](#individual-k8s-namespaces-within-a-cluster)
@@ -53,11 +53,6 @@ The following information will be required:
 
 ##### Individual K8s Namespaces within a Cluster
 
-Deploy an application
-
-```execute
-kubectl create deployment hello-java --image=securezone/helloworld-java-spring
-```
 
 Create a yaml file `sink.yaml` with the following contents:
 
@@ -82,7 +77,18 @@ where `name` is the name of your Sink resource, `host` is the syslog host, `port
 kubectl apply -f sink.yaml
 ```
 
-This should create the required Sink resource for the Namespace `kube-system`.
+This will create the required Sink resource for the Namespace `kube-system`.
+
+Deploy an application
+
+```execute
+kubectl create deployment spring-hello --image=marounbassam/hello-spring
+```
+
+Check if the pod is up and running.
+```execute
+kubectl get pods
+```
 
 Navigate to your Syslog dashboard and look for relevant logs in your Syslog dashboard.
 
