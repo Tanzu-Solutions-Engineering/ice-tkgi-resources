@@ -1,31 +1,39 @@
 # PKS Logging with Syslog
 
-The goal of this lab is to give an overview of the various logging mechanisms and levels of logging in PKS clusters. By the end of this exercise, you should feel comfortable:
-
-  * configuring logging on an individual Namespace with Sinks
-  * configuring logging for entire clusters with ClusterSinks
-  * enabling syslog for the PKS Control Plane
-  * enabling syslog for the BOSH Director and its components
-
 ## Table of Contents
-- [Application Logging](#application-logging-the-recommended-approach)
+- [Application Logging Recommended Approach](#application-logging-12-factor-approach)
+- Routing Application Logs(#log-routing-with-fluent-bit)
 - [PKS Logging](#pks-logging)
     - [Individual K8s namespaces within a cluster](#individual-k8s-namespaces-within-a-cluster)
     - [Individual K8s Clusters](#individual-k8s-clusters)
     - [PKS Control Plane](#pks-control-plane)
     - [BOSH Director and its Components](#bosh-director-and-its-components)
-    - Useful Links
+    - [Useful Links](#useful-links)
 
-### Application Logging - the recommended approach
-
-https://12factor.net/logs
+### Application Logging - 12 factor approach
 
  - Treat Logs as streams.
  - Managing the output and routing of logs falls outside the application domain.
 
-### PKS Logging
+### Log Routing with fluentbit
 
-PKS logging can be enabled and configured at 4 different levels:
+*"Fluent Bit is an open source Log Processor and Forwarder which allows you to collect any data like metrics and logs from different sources, enrich them with filters and send them to multiple destinations."*
+
+#### Fluentbit processing steps
+
+![fluent-bit](./fluentbit.png)
+
+#### Fluentbit in K8S
+
+![fluent-bit-in-k8s](./fluentbit_in_k8s.png)
+
+#### Fluentbit in TKGI
+
+![fluent-bit-in-tkgi](./fluentbit_in_tkgi.png)
+
+### TKGI Logging
+
+TKGI logging can be enabled and configured at 4 different levels:
 
 1. Individual K8s namespaces within a cluster
 2. Individual K8s clusters
@@ -41,7 +49,9 @@ The following information will be required:
 * TLS enabled/disabled - `Enabled` for this lab.
 * `Enable Log Sink Resources` should be enabled on the PKS tile.
 
-### Individual K8s Namespaces within a Cluster
+#### Application Logging
+
+##### Individual K8s Namespaces within a Cluster
 
 Create a yaml file `sink.yaml` with the following contents:
 
@@ -69,7 +79,7 @@ This should create the required Sink resource for the Namespace `kube-system`.
 
 Navigate to your Syslog dashboard and look for relevant logs in your Syslog dashboard.
 
-### Individual K8s Clusters
+##### Individual K8s Clusters
 
 Create a yaml file `clustersink.yaml` with the following contents:
 
@@ -96,7 +106,9 @@ This should create the required ClusterSink resource.
 
 Navigate to your Syslog dashboard and look for relevant logs in your Syslog dashboard
 
-### PKS Control Plane
+#### Platform Logging
+
+##### PKS Control Plane
 
 To enable logging of the PKS control plane, within the OpsMan UI, navigate to the PKS tile -> `Settings` -> `Logging`.
 
@@ -113,7 +125,7 @@ Navigate to the top level. `Review Pending Changes` and then `Apply Changes`.
 
 Navigate to your Syslog dashboard and look for relevant logs in your Syslog dashboard.
 
-### BOSH Director and its Components
+##### BOSH Director and its Components
 
 To enable logging of the BOSH director and its components, within the OpsMan UI, navigate to the BOSH Director tile -> `Settings` -> `Syslog`.
 
@@ -132,5 +144,7 @@ Navigate to your Syslog dashboard and look for relevant logs in your Syslog dash
 
 ### Useful Links
  - [12 factor apps](https://12factor.net/)
+ - [Fluentbit](https://docs.fluentbit.io/manual/)
+ - [Fluentbit output plugins](https://docs.fluentbit.io/manual/pipeline/outputs)
  - [Sink Architecture](https://docs.pivotal.io/tkgi/1-10/sink-architecture.html)
  - [Creating Sinks](https://docs.pivotal.io/tkgi/1-10/create-sinks.html)

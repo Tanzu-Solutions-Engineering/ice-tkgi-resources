@@ -10,6 +10,6 @@ spec:
       type: anonymous
   workshops:
   - name: ice-tkgi-resources
-    capacity: 2 
+    capacity: 5 
     expires: 60m
     orphaned: 5m

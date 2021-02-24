@@ -8,7 +8,7 @@ spec:
   title: TKGI Resources
   description: Kubernetes related content for ICE team
   vendor: vmware.com
-  difficulty: beginner
+  difficulty: intermediate
   duration: 15m
   url: https://github.com/Tanzu-Solutions-Engineering/ice-tkgi-resources
   content:
