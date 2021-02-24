@@ -2,7 +2,7 @@
 
 ## Table of Contents
 - [Application Logging Recommended Approach](#application-logging-12-factor-approach)
-- Routing Application Logs(#log-routing-with-fluent-bit)
+- [Routing Application Logs](#log-routing-with-fluent-bit)
 - [PKS Logging](#pks-logging)
     - [Individual K8s namespaces within a cluster](#individual-k8s-namespaces-within-a-cluster)
     - [Individual K8s Clusters](#individual-k8s-clusters)
@@ -44,8 +44,8 @@ For this lab, we will use the [Papertrail](https://papertrailapp.com) syslog app
 
 The following information will be required:
 
-* Syslog endpoint - `logs3.papertrailapp.com` for this lab
-* Syslog port - `39458` for this lab
+* Syslog endpoint - `logsx.papertrailapp.com` for this lab
+* Syslog port - `4423` for this lab
 * TLS enabled/disabled - `Enabled` for this lab.
 * `Enable Log Sink Resources` should be enabled on the PKS tile.
 
@@ -53,14 +53,19 @@ The following information will be required:
 
 ##### Individual K8s Namespaces within a Cluster
 
+Deploy an application
+
+```execute
+kubectl create deployment hello-java --image=securezone/helloworld-java-spring
+```
+
 Create a yaml file `sink.yaml` with the following contents:
 
-```yaml
+```copy
 apiVersion: pksapi.io/v1beta1
 kind: LogSink
 metadata:
   name: sink-papertrail
-  namespace: spring-petclinic
 spec:
   type: http
   output_properties:
@@ -73,7 +78,9 @@ spec:
 
 where `name` is the name of your Sink resource, `host` is the syslog host, `port` is the syslog port and `enable_tls` enables TLS communication.
 
-`kubectl apply -f sink.yaml`
+```execute
+kubectl apply -f sink.yaml
+```
 
 This should create the required Sink resource for the Namespace `kube-system`.
 
@@ -83,7 +90,7 @@ Navigate to your Syslog dashboard and look for relevant logs in your Syslog dash
 
 Create a yaml file `clustersink.yaml` with the following contents:
 
-```yaml
+```copy
 apiVersion: pksapi.io/v1beta1
 kind: ClusterLogSink
 metadata:
@@ -98,9 +105,9 @@ spec:
     tls.verify: off
 ```
 
-where `name` is the name of your ClusterSink, `host` is the syslog host, `port` is the syslog port and `enable_tls` enables TLS communication.
-
+```execute
 `kubectl apply -f clustersink.yaml`
+```
 
 This should create the required ClusterSink resource.
 
