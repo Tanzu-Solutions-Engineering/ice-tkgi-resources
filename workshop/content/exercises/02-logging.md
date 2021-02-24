@@ -112,7 +112,7 @@ spec:
 ```
 
 ```execute
-`kubectl apply -f clustersink.yaml`
+kubectl apply -f clustersink.yaml
 ```
 
 This should create the required ClusterSink resource.
