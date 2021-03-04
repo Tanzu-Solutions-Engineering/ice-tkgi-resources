@@ -88,15 +88,20 @@ The wavefront collector can collect data from multiple sources,
  - Telegraf source: For host and application level metrics
  - Systemd source: For host level systemd metrics
 
-##### Kubernetes Metrics with Wavefront.
+##### Kubernetes Metrics
 
-##### Application Metrics with Wavefront.
+##### Application Metrics
 
-##### Application Tracing with Wavefront.
+##### Application Tracing
 
-##### Alerting with Wavefront.
+Span: The basic unit of work. For example, sending an RPC is a new span, as is sending a response to an RPC. Spans also have other data, such as descriptions, timestamped events, key-value annotations (tags), the ID of the span that caused them, and process IDs (normally IP addresses).
+Spans can be started and stopped, and they keep track of their timing information. Once you create a span, you must stop it at some point in the future.
+Trace: A set of spans forming a tree-like structure. For example, if you run a distributed big-data store, a trace might be formed by a PUT request.
 
-#### vRealize Operations
+The following image shows how Span and Trace look in a system.
+![tracing](./tracing.png)
+
+##### Alerting
 
 
 ### Useful Links
@@ -107,3 +112,4 @@ The wavefront collector can collect data from multiple sources,
  - [Telegraf output plugins](https://github.com/influxdata/telegraf/tree/1.13.4#output-plugins)
  - [Configuring Telegraf in TKGI](https://docs.pivotal.io/tkgi/1-10/monitor-etcd.html)
  - [Wavefront Collector Metrics](https://github.com/wavefrontHQ/wavefront-collector-for-kubernetes/blob/master/docs/metrics.md)
+ - [Application Metrics with Spring Cloud Sleuth](https://docs.spring.io/spring-cloud-sleuth/docs/current/reference/html/getting-started.html#getting-started-introducing-spring-cloud-sleuth)
