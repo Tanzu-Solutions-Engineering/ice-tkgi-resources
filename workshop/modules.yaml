@@ -11,7 +11,7 @@ modules:
     exercises/02-logging:
         name: Logging
         exit_sign: Metrics And Traceability
-    exercises/03-metrics-traceability:
+    exercises/03-metrics-tracing:
         name: Metrics Tracing
     workshop-summary:
         name: Workshop Summary
