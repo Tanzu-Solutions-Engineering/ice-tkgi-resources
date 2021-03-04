@@ -6,4 +6,5 @@ modules:
     - using-workshop
     - exercises/01-observability
     - exercises/02-logging
+    - exercises/03-metrics-tracing
     - workshop-summary
