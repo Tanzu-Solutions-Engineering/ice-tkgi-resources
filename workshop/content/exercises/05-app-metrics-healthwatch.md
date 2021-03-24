@@ -21,14 +21,30 @@ The last piece is to configure Healthwatch 2.0 to scrap these metrics.
 
 #### Steps:
 
+ - Create a yaml file cms-prometheus.yml
+```editor:open-file
+file: ./cms-prometheus.yml
+```
+ - Create a yaml telegrafds-service.yml for the service to expose the cluster metric sink.
+```editor:open-file
+file: ./telegrafds-service.yml
+```
  - Install the cluster metric sink and service
 ```execute
 kubectl apply -f cms-prometheus.yml
 kubectl apply -f telegrafds-service.yml
 ```
+ - Create a yaml file ms-influxdb.yml for the metric sink at namespace level.
+```editor:open-file
+file: ./ms-influxdb.yml
+```
  - Install the metric sink into default namespace
 ```execute
 kubectl apply -f ms-influxdb.yml
+```
+ - Create a yaml file app-sample-metrics.yml to deploy a sample app that emits metrics.
+```editor:open-file
+file: ./app-sample-metrics.yml
 ```
  - Run the example app pod and expose it
 ```execute

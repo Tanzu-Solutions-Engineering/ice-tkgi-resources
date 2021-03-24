@@ -14,6 +14,7 @@ and view this sample workshop, run:
 ```
 kubectl apply -f https://raw.githubusercontent.com/Tanzu-Solutions-Engineering/ice-tkgi-resources/master/resources/workshop.yaml
 kubectl apply -f https://raw.githubusercontent.com/Tanzu-Solutions-Engineering/ice-tkgi-resources/master/resources/training-portal.yaml
+(OR) Using kapp - kapp deploy -a tkgi-ws -f .
 ```
 
 This will deploy a training portal hosting just this workshop. To get the
