@@ -13,6 +13,10 @@ modules:
         exit_sign: Metrics And Traceability
     exercises/03-metrics-tracing:
         name: Metrics Tracing
+    exercises/04-metrics-healthwatch:
+        name: Metrics with Healthwatch
+    exercises/05-app-metrics-healthwatch:
+        name: App, Cluster Metrics with Healthwatch
     workshop-summary:
         name: Workshop Summary
         exit_sign: Finish Workshop

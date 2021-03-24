@@ -7,4 +7,6 @@ modules:
     - exercises/01-observability
     - exercises/02-logging
     - exercises/03-metrics-tracing
+    - exercises/04-metrics-healthwatch
+    - exercises/05-app-metrics-healthwatch
     - workshop-summary

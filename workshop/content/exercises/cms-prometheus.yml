@@ -1,0 +1,12 @@
+apiVersion: pksapi.io/v1beta1
+kind: ClusterMetricSink
+metadata:
+  name: promcloudsink
+spec:
+  inputs:
+  - type: influxdb_listener
+    service_address: ":9223"
+  outputs:
+  - type: prometheus_client
+    listen: ":9978"
+    path: "/metrics"
