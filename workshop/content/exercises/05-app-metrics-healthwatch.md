@@ -29,8 +29,9 @@ file: ./yamls/cms-prometheus.yml
 ```editor:open-file
 file: ./yamls/telegrafds-service.yml
 ```
- - Install the cluster metric sink and service
-```execute
+ - Install the cluster metric sink and service.
+   NOTE: This has to be done at the Kubernetes cluster level. Hence will not work in the workshop session.
+```
 kubectl apply -f ./yamls/cms-prometheus.yml
 kubectl apply -f ./yamls/telegrafds-service.yml
 ```
@@ -38,11 +39,11 @@ kubectl apply -f ./yamls/telegrafds-service.yml
 ```editor:open-file
 file: ./yamls/ms-influxdb.yml
 ```
- - Install the metric sink into default namespace
+ - Install the namespace wide metric sink.
 ```execute
 kubectl apply -f ./yamls/ms-influxdb.yml
 ```
- - Create a yaml file app-sample-metrics.yml to deploy a sample app that emits metrics.
+ - Create a yaml file app-sample-metrics.yml to deploy a sample app that emits metrics (in the same namespace as previous step).
 ```editor:open-file
 file: ./yamls/app-sample-metrics.yml
 ```
